@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  fluent-bit:
+    image: fluent/fluent-bit:latest
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./out/production/robots/my/robots/MyTestRobot.data:/var/log/
+    ports:
+      - "2020:2020"  # Fluent Bitのデフォルトポート

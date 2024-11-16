@@ -11,9 +11,11 @@ public class MyTestRobot extends AdvancedRobot {
 
     private int attackCount = 0;
     private double energy = 100;
-
+    private double radarTurnAmount; // P6863
 
     public void run() {
+        radarTurnAmount = Double.POSITIVE_INFINITY; // Paaa4
+        setTurnRadarRight(radarTurnAmount); // Paaa4
         while (true) {
             try {
                 RobocodeFileOutputStream robocodeFileOutputStream =
@@ -62,6 +64,8 @@ public class MyTestRobot extends AdvancedRobot {
      * Fire when we see a robot
      */
     public void onScannedRobot(ScannedRobotEvent e) {
+        radarTurnAmount = getHeading() - getRadarHeading() + e.getBearing(); // Paba5
+        setTurnRadarRight(radarTurnAmount); // Paba5
         fire(1);
         attackCount++;
     }
